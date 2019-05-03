@@ -4,9 +4,9 @@
 </svelte:head>
 
 <script>
-	import Layout from './components/layout.svelte';
-	import Counts from './components/counts.svelte';
-	import CopyButton from './components/copy-button.svelte';
+	import Layout from './components/Layout.svelte';
+	import Counts from './components/Counts.svelte';
+	import CopyButton from './components/CopyButton.svelte';
 	import options from './lib/options.js';
 	import Case from './lib/case.min.js'; // Case is available on the global window.
 
@@ -43,11 +43,6 @@
 </script>
 
 <style>
-	label {
-		font-weight: bold;
-		margin-bottom: 5px;
-	}
-
   textarea {
 		width: 100%;
 		border-radius: 10px;

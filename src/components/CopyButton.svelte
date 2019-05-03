@@ -10,5 +10,3 @@
     Copy
   {/if}
 </button>
-
-<style></style>
