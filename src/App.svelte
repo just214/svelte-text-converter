@@ -6,9 +6,9 @@
 <script>
 	import Layout from './components/layout.svelte';
 	import Counts from './components/counts.svelte';
+	import CopyButton from './components/copy-button.svelte';
 	import options from './lib/options.js';
 	import Case from './lib/case.min.js'; // Case is available on the global window.
-	import {copied} from './stores';
 
 	// Input
 	let inputValue = "";
@@ -43,10 +43,6 @@
 </script>
 
 <style>
-	header {
-		font-family: "Special Elite", sans-serif;
-	}
-
 	label {
 		font-weight: bold;
 		margin-bottom: 5px;
@@ -76,15 +72,15 @@
 		justify-content: center;
 		flex-wrap: wrap;
 	}
-
-	button {
+	/* The button styles are global so they can be shared by the copy-button component */
+	:global(button) {
 		border-radius: 16px;
 		padding: 3px 8px;
 		cursor: pointer;
 		margin: 5px;
 	}
 
-	button:hover {
+	:global(button:hover) {
 		opacity: .8
 	}
 
@@ -92,9 +88,7 @@
 
 <Layout>
 
-	<header>
-		<h1>svelte-text-converter</h1>
-	</header>
+	<h1 slot="header">svelte-text-converter</h1>
 
 	<textarea {...inputProps} bind:value={inputValue}  />
 
@@ -115,22 +109,16 @@
 	</div>
 
 	<div class="button-wrapper">
-		<button on:click={() => copied.copy(outputRef)}>Copy</button>
+		<CopyButton target={outputRef}/>
 		<button on:click={handleClear}>Clear&nbsp;&times;</button>
 	</div >
 
-	<div style="height: 30px;">
-		{#if $copied}
-		<small style="align-self: center;">Copied!</small>
-		{/if}
-	</div>
+	<a 
+		slot="footer"
+		href="https://github.com/gojutin/svelte-text-converter" 
+		target="_blank" 
+		rel="noopener noreferrer"
+	>View on GitHub</a>
 
-	<div>
-		<a 
-			href="https://github.com/gojutin/svelte-text-converter" 
-			target="_blank" 
-			rel="noopener noreferrer"
-		>View on GitHub</a>
-	</div>
 
 </Layout>

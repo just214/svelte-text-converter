@@ -17,10 +17,11 @@
     text-align: center;
     border-radius: 12px;
     background: steelblue;
-    color: rgb(221, 230, 238);
+    color: rgb(236, 241, 245);
     margin: 10px;
     padding: 4px 8px;
     width: 200px;
+    font-weight: bold;
   }
 </style>
 
