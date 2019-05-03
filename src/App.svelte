@@ -105,9 +105,19 @@
 	<button on:click={handleClear}>Clear&nbsp;&times;</button>
 </div >
 
-<div style="text-align: center">
+<div style="text-align: center;height: 30px;">
 	{#if $copied}
 	<small style="align-self: center;">Copied!</small>
 	{/if}
 </div>
+
+<div style="text-align: center">
+	<a 
+		href="https://github.com/gojutin/svelte-text-converter" 
+		target="_blank" 
+		rel="noopener noreferrer"
+	>View on GitHub</a>
+</div>
+
+
 </Layout>

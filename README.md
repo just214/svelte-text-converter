@@ -1,6 +1,8 @@
 # svelte-text-converter
 
-### A text-converter demo app build with [Svelte3](https://svelte.technology).
+### A text-converter app build with [Svelte3](https://svelte.technology).
+
+### [Demo](https://svelte-text-converter.netlify.com/)
 
 ## Get started
 
