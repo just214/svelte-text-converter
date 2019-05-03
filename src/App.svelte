@@ -1,4 +1,7 @@
 <svelte:options immutable={true}/>
+<svelte:head>
+	<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+</svelte:head>
 
 <script>
 	import Layout from './components/layout.svelte';
@@ -11,8 +14,9 @@
 	let inputValue = "";
 	let inputProps = {
 		name: 'input-value',
-		placeholder: 'Enter your text here',
 		rows: 5,
+		placeholder: 'Enter your text here',
+		['aria-label']: 'input-value',
 	}
 
 	// Selection
@@ -27,6 +31,7 @@
 		placeholder: 'Your converted text will appear here',
 		rows: 5,
 		readonly: true,
+		['aria-label']: 'output-value',
 	}
 
 	// Clear
@@ -35,14 +40,18 @@
 			inputValue = ""
 		}
 	}
-
 </script>
 
 <style>
+	header {
+		font-family: "Special Elite", sans-serif;
+	}
+
 	label {
 		font-weight: bold;
 		margin-bottom: 5px;
 	}
+
   textarea {
 		width: 100%;
 		border-radius: 10px;
@@ -59,6 +68,7 @@
 		width: 200px;
 		height: 40px;
 		margin: 15px;
+		font-weight: bold;
 	}
 
 	div.button-wrapper {
@@ -73,54 +83,54 @@
 		cursor: pointer;
 		margin: 5px;
 	}
+
 	button:hover {
 		opacity: .8
 	}
+
 </style>
 
 <Layout>
 
-<label for={inputProps.name}>INPUT</label>
-<textarea {...inputProps} bind:value={inputValue}  />
+	<header>
+		<h1>svelte-text-converter</h1>
+	</header>
 
-<div style="text-align: center">
-		<select name="conversion-type" aria-label="Conversion Type" bind:value={selection}>
-			{#each options as option}
-				<option value={option.value}>{option.label}</option>
-			{/each}
-		</select>
-</div>
+	<textarea {...inputProps} bind:value={inputValue}  />
 
+	<select name="conversion-type" aria-label="Conversion Type" bind:value={selection}>
+		{#each options as option}
+			<option value={option.value}>{option.label}</option>
+		{/each}
+	</select>
 
+	<textarea 
+		{...outputProps} 
+		bind:value={outputValue} 
+		bind:this={outputRef} 
+	/>
 
-<label for={outputProps.name}>OUTPUT</label>
-<textarea 
-	{...outputProps} 
-	bind:value={outputValue} 
-	bind:this={outputRef} 
-/>
-<div class="button-wrapper">
-	<Counts {inputValue} />
-</div>
+	<div class="button-wrapper">
+		<Counts {inputValue} />
+	</div>
 
-<div class="button-wrapper">
-	<button on:click={() => copied.copy(outputRef)}>Copy</button>
-	<button on:click={handleClear}>Clear&nbsp;&times;</button>
-</div >
+	<div class="button-wrapper">
+		<button on:click={() => copied.copy(outputRef)}>Copy</button>
+		<button on:click={handleClear}>Clear&nbsp;&times;</button>
+	</div >
 
-<div style="text-align: center;height: 30px;">
-	{#if $copied}
-	<small style="align-self: center;">Copied!</small>
-	{/if}
-</div>
+	<div style="height: 30px;">
+		{#if $copied}
+		<small style="align-self: center;">Copied!</small>
+		{/if}
+	</div>
 
-<div style="text-align: center">
-	<a 
-		href="https://github.com/gojutin/svelte-text-converter" 
-		target="_blank" 
-		rel="noopener noreferrer"
-	>View on GitHub</a>
-</div>
-
+	<div>
+		<a 
+			href="https://github.com/gojutin/svelte-text-converter" 
+			target="_blank" 
+			rel="noopener noreferrer"
+		>View on GitHub</a>
+	</div>
 
 </Layout>
