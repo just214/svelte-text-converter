@@ -58,7 +58,7 @@
 	select {
 		width: 200px;
 		height: 40px;
-		margin-bottom: 15px;
+		margin: 15px;
 	}
 
 	div.button-wrapper {
@@ -83,12 +83,15 @@
 <label for={inputProps.name}>INPUT</label>
 <textarea {...inputProps} bind:value={inputValue}  />
 
-<label for="conversion-type">CONVERSION</label>
-<select name="conversion-type" bind:value={selection}>
-	{#each options as option}
-		<option value={option.value}>{option.label}</option>
-	{/each}
-</select>
+<div style="text-align: center">
+		<select name="conversion-type" aria-label="Conversion Type" bind:value={selection}>
+			{#each options as option}
+				<option value={option.value}>{option.label}</option>
+			{/each}
+		</select>
+</div>
+
+
 
 <label for={outputProps.name}>OUTPUT</label>
 <textarea 
